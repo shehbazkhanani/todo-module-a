@@ -1,0 +1,25 @@
+.frm {
+    border: 1px solid black;
+    width: 40vw;
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inp {
+    width: 90%;
+    height: 6vh;
+}
+
+.btn {
+    background-color: rgb(41, 156, 228);
+    color: white;
+    width: 30%;
+    border: none;
+    height: 5vh;
+    margin: 2vh;
+}
