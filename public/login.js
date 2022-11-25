@@ -1,7 +1,7 @@
-// Import the functions you need from the SDKs you need
+//Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,30 +21,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
-
-let firstname = document.getElementById('firstname');
-let lastname = document.getElementById('lastname');
 let email = document.getElementById('email');
 let password = document.getElementById('password');
 
 
-window.signup = function(e) {
+window.login = function(e) {
     e.preventDefault()
     let model = {
-        Firstname : firstname.value,
-        Lastname : lastname.value,
         Email : email.value,
         Password : password.value,
     }
-    createUserWithEmailAndPassword(auth, model.Email, model.Password)
-  .then(function(userCredential){
-    // Signed in 
-    console.log(userCredential.user.uid);
-    // ...
-  })
-  .catch(function(error){
-    console.log(error);
-    // ..
-  });
-   
+
+    signInWithEmailAndPassword(auth, model.Email, model.Password).
+    then(function(succ){
+        // console.log(succ.user.uid);
+        window.location.replace('index.html')
+    }).catch(function(err){
+        console.log(err);
+    })
+
 }
